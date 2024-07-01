@@ -1,0 +1,21 @@
+
+html,body{
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    place-items: center;
+  }
+   
+#app {
+  max-width: none;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin:0px;
+  padding: 0px;
+  max-width: none;
+  text-align: center;
+}
+  
