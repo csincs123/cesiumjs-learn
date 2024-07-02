@@ -1,14 +1,11 @@
-# cesiumjs-learn4
+# cesiumjs-learn
 
-This template should help get you started developing with Vue 3 in Vite.
+本项目是将CesiumJS官网教程中的html代码转为Vue3，这样更方便管理。
+特点：
+1 对教程代码需要使用cesium ion的地方进行调整，尽量使用本地文件，减少操作。
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+希望这个项目可以帮助你更好的学习cesium。
 
 ## Project Setup
 
