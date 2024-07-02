@@ -1,14 +1,26 @@
 <script setup>
-import route from './route.json'
+import { reactive, watch, computed } from 'vue';
+import { useRoute } from 'vue-router';
+import routeJson from './route.json'
+
+const route = useRoute()
+
+const selectedPath = computed(() => {
+  console.log(route.path)
+  return route.path
+})
 
 </script>
 
 <template>
   <nav class="sidebar">
     <ul>
-      <li v-for="item in route">
-        <router-link :to="item.path">{{ item.name }}
-      </router-link></li>
+      <li v-for="item in routeJson" 
+      :key="item.name" 
+      :class="{active: selectedPath === item.path}"
+      >
+        <router-link :to="item.path">{{ item.name }}</router-link>
+      </li>
     </ul>
   </nav>
 </template>
@@ -28,12 +40,17 @@ import route from './route.json'
 }
 .sidebar li {
   padding: 15px;
+  cursor: pointer; 
 }
 .sidebar a {
   text-decoration: none;
   color: #333;
 }
 .sidebar a:hover {
-  color: #007bff;
+  color: #00ff88;
+}
+.sidebar .active {
+  background-color: #007bff;
+  color: white;
 }
 </style>

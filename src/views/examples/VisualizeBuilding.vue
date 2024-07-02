@@ -10,6 +10,7 @@ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOi
 let viewer = null
 let buildingsTileset = null
 let newBuildingTileset = null
+let buildingGeoJSON = null
 
 onMounted(async () => {
   viewer = new Cesium.Viewer("cesiumContainer", {
@@ -29,20 +30,24 @@ onMounted(async () => {
 })
 
 async function addBuildingGeoJSON() {
+  if (buildingGeoJSON) {
+    buildingGeoJSON.show = !buildingGeoJSON.show
+    return 
+  }
   // Load the GeoJSON file from Cesium ion.
   // const geoJSONURL = await Cesium.IonResource.fromAssetId(your_asset_id);
   // Create the geometry from the GeoJSON, and clamp it to the ground.
   const new_building_denver = '/new_building_denver.json';
-  const geoJSON = await Cesium.GeoJsonDataSource.load(new_building_denver, { clampToGround: true });
+  buildingGeoJSON = await Cesium.GeoJsonDataSource.load(new_building_denver, { clampToGround: true });
   // Add it to the scene.
-  const dataSource = await viewer.dataSources.add(geoJSON);
+  const dataSource = await viewer.dataSources.add(buildingGeoJSON);
   // By default, polygons in CesiumJS will be draped over all 3D content in the scene.
   // Modify the polygons so that this draping only applies to the terrain, not 3D buildings.
   for (const entity of dataSource.entities.values) {
     entity.polygon.classificationType = Cesium.ClassificationType.TERRAIN;
   }
   // Move the camera so that the polygon is in view.
-  viewer.flyTo(dataSource);
+  // viewer.flyTo(dataSource);
 }
 
 function hiddenOldBuilding () {
@@ -71,7 +76,6 @@ function hiddenOldBuilding () {
 
 
 async function showNewBuilding () {
-
   if (newBuildingTileset) {
     newBuildingTileset.show = !newBuildingTileset.show
     return 
@@ -134,11 +138,33 @@ async function showNewBuilding () {
   #toggle-building { z-index: 1; top: 5px; left: 5px; }
 
   .buttonDiv {
+    display: flex;
+    justify-content: space-around;
     z-index: 100;
-    width: 100px;
+    /* width: 100px; */
     position: absolute;
     top: 10px;
     left: 200px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .buttonDiv button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+  }
+  .buttonDiv button:hover {
+    background-color: #2980b9
+  }
+  .buttonDiv button:focus {
+    outline: none
   }
 
 </style>
