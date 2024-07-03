@@ -24,9 +24,7 @@ onMounted(async () => {
   buildingsTileset = await Cesium.createOsmBuildingsAsync();
   viewer.scene.primitives.add(buildingsTileset);
 
-  // await addBuildingGeoJSON();
-
-  
+  // await addBuildingGeoJSON()
 })
 
 async function addBuildingGeoJSON() {
@@ -109,9 +107,17 @@ async function showNewBuilding () {
   })
   // const newBuildingTileset = await Cesium.Cesium3DTileset.fromIonAssetId();
   viewer.scene.primitives.add(newBuildingTileset);
-  console.log('newBuildingTileset', newBuildingTileset)
   // Move the camera to the new building.
   // viewer.flyTo(newBuildingTileset);
+
+  // 高亮颜色
+  var highlightColor = Cesium.Color.fromAlpha(Cesium.Color.RED, 0.5);
+
+  if (newBuildingTileset) {
+    // newBuildingTileset.color = highlightColor;
+    newBuildingTileset.outlineColor = highlightColor
+    newBuildingTileset.showOutline = true
+  }
 
 }
 
@@ -125,7 +131,6 @@ async function showNewBuilding () {
       <button @click="hiddenOldBuilding">隐藏旧建筑</button>
       <button @click="showNewBuilding">显示新建筑</button>
     </div>
-    
   </div>
 </template>
 
@@ -134,8 +139,6 @@ async function showNewBuilding () {
     height: 100%;
     width: 100%;
   }
-  /* position: fixed;  */
-  #toggle-building { z-index: 1; top: 5px; left: 5px; }
 
   .buttonDiv {
     display: flex;
