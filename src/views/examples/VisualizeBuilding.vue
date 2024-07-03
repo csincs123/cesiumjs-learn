@@ -23,9 +23,6 @@ onMounted(async () => {
   // step2 Add Cesium OSM Buildings.
   buildingsTileset = await Cesium.createOsmBuildingsAsync();
   viewer.scene.primitives.add(buildingsTileset);
-
-  // await addBuildingGeoJSON();
-
   
 })
 
@@ -107,9 +104,9 @@ async function showNewBuilding () {
     //  fixedFrameTransform
    )
   })
+  newBuildingTileset.silhouetteSize = 2 // 轮廓大小
   // const newBuildingTileset = await Cesium.Cesium3DTileset.fromIonAssetId();
   viewer.scene.primitives.add(newBuildingTileset);
-  console.log('newBuildingTileset', newBuildingTileset)
   // Move the camera to the new building.
   // viewer.flyTo(newBuildingTileset);
 
