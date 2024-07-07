@@ -119,6 +119,7 @@ async function showNewBuilding () {
     newBuildingTileset.showOutline = true
   }
 
+  newBuildingTileset.silhouetteSize = 2
 }
 
 

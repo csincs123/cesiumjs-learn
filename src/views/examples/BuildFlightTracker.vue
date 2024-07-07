@@ -95,6 +95,7 @@ async function movementOvertime (type) {
   }
   // STEP 4 CODE (green circle entity)
   // Create an entity to both visualize the entire radar sample series with a line and add a point that moves along the samples.
+  viewer.entities.removeAll()
   let model = null
   if (type === 'greenPoint') {
     model = {
