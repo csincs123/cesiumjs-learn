@@ -6,7 +6,6 @@ import routeJson from './route.json'
 const route = useRoute()
 
 const selectedPath = computed(() => {
-  console.log(route.path)
   return route.path
 })
 
