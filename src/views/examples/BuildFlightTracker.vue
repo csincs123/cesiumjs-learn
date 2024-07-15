@@ -1,13 +1,8 @@
 <script setup>
 import * as Cesium from 'cesium';
-import "cesium/Build/Cesium/Widgets/widgets.css";
 import { onMounted } from "vue";
 import {fetchLocalJson} from '@/components/utils/JSONUtil.js'
 
-
-Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlZDNiMDU1Yi0zNTM0L' + 
-                          'TQ3ZGEtYTYwNy03NjExYjY5NGVjNTYiLCJpZCI6MTA1NDE2LCJpYXQiOjE2NjEwODc' + 
-                          '2Mzl9.Tb0oUIPl1DsCS6BQDDvhTeImZI8PQDb1g3hX62SopF0';
 let viewer = null
 let buildingsTileset = null
 let flightData = null
