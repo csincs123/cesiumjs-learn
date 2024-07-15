@@ -1,8 +1,10 @@
 <script setup >
 import * as Cesium from 'cesium'
-import {ref, onMounted} from 'vue'
+import {ref, onMounted, watch} from 'vue'
 
 const value = ref('')
+const collisionDetection = ref('false')
+
 let viewer = null
 const options = [
   {label: "飞向一个地点", value: 'Fly to a location'},
@@ -125,6 +127,10 @@ onMounted (async () => {
   })
 })
 
+watch (collisionDetection, async(value) => {
+  viewer.scene.screenSpaceCameraController.enableCollisionDetection = value;
+})
+
 const handleSelect = (value) => {
   switch (value) {
     case 'Fly to a location':
@@ -167,8 +173,12 @@ const handleSelect = (value) => {
           :value="item.value"
         />
       </el-select>
-      <el-checkbox v-model="checked1" label="Get location of a point" size="large" />
-      <el-checkbox v-model="checked2" label="Screen space camera controller" size="large" />
+      <el-checkbox 
+        v-model="collisionDetection" 
+        @change='collisionDetection != collisionDetection' 
+        label="enableCollisionDetection" 
+        size="large" 
+      />
     </div>
   </div>
 </template>
