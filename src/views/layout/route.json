@@ -6,5 +6,9 @@
   {
     "name": "Build a flight tracker",
     "path": "/BuildFlightTracker"
+  },
+  {
+    "name": "Control the camera",
+    "path": "/ControlCamera"
   }
 ]
