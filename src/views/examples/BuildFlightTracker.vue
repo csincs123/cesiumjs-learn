@@ -22,6 +22,19 @@ onMounted(async () => {
   // step2 Add Cesium OSM Buildings.
   buildingsTileset = await Cesium.createOsmBuildingsAsync();
   viewer.scene.primitives.add(buildingsTileset);
+
+  // STEP 3 CODE (first point)
+  // This is one of the first radar samples collected for our flight.
+  // const dataPoint = { longitude: -122.38985, latitude: 37.61864, height: -27.32 };
+  // // Mark this location with a red point.
+  // const pointEntity = viewer.entities.add({
+  //   description: `First data point at (${dataPoint.longitude}, ${dataPoint.latitude})`,
+  //   position: Cesium.Cartesian3.fromDegrees(dataPoint.longitude, dataPoint.latitude, dataPoint.height),
+  //   point: { pixelSize: 10, color: Cesium.Color.RED }
+  // });
+  // // Fly the camera to this point.
+  // viewer.flyTo(pointEntity);
+
 })
 
 
@@ -137,7 +150,7 @@ function movementAirplane () {
 
 <template>
   <div id = "cesiumContainer" class="map"> 
-    <div class="buttonDiv">
+    <div class="buttonDiv" v-if="true">
       <button @click="addRadarSamples" >添加雷达数据</button>
       <button @click="movementGreenPoint">绿点移动</button>
       <button @click="movementAirplane">飞机移动</button>

@@ -10,5 +10,9 @@
   {
     "name": "Control the camera",
     "path": "/ControlCamera"
+  },
+  {
+    "name": "Photorealistic 3D Tiles from Google Maps Platform",
+    "path": "/Photorealistic3DTiles"
   }
 ]

@@ -16,15 +16,15 @@ const options = [
 ]
 const flyLocation = () => {
   viewer.camera.flyTo({
-    destination: Cesium.Cartesian3.fromDegrees(-117.16, 32.71, 1500.0)
+    destination: Cesium.Cartesian3.fromDegrees(-117.16, 32.71, 15000.0)
   });
 }
 const flyLocationOrientation = () => {
   viewer.camera.flyTo({
-    destination: Cesium.Cartesian3.fromDegrees(-117.16, 32.71, 1500.0),
+    destination: Cesium.Cartesian3.fromDegrees(-117.16, 32.71, 15000.0),
     orientation: {
-      heading: Cesium.Math.toRadians(20.0),
-      pitch: Cesium.Math.toRadians(-35.0),
+      heading: Cesium.Math.toRadians(-45),
+      pitch: Cesium.Math.toRadians(0),
       roll: 0.0,
     },
   });
@@ -177,7 +177,8 @@ const handleSelect = (value) => {
         v-model="collisionDetection" 
         @change='collisionDetection != collisionDetection' 
         label="enableCollisionDetection" 
-        size="large" 
+        size="large"
+        v-if = 'false' 
       />
     </div>
   </div>
