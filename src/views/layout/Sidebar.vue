@@ -1,9 +1,7 @@
 <script setup>
 import { reactive, watch, computed } from 'vue';
 import { useRoute } from 'vue-router';
-// import routeJson from './route.json'
 import router from '@/router/DynamicRoute.js'
-console.log(router.getRoutes())
 
 const route = useRoute()
 
