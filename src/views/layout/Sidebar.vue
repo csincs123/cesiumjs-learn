@@ -1,7 +1,9 @@
 <script setup>
 import { reactive, watch, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import routeJson from './route.json'
+// import routeJson from './route.json'
+import router from '@/router/DynamicRoute.js'
+console.log(router.getRoutes())
 
 const route = useRoute()
 
@@ -14,7 +16,7 @@ const selectedPath = computed(() => {
 <template>
   <nav class="sidebar">
     <ul>
-      <li v-for="item in routeJson" 
+      <li v-for="item in router.getRoutes()" 
       :key="item.name" 
       :class="{active: selectedPath === item.path}"
       >
