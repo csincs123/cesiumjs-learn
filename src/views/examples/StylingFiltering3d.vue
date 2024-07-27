@@ -64,7 +64,6 @@ const colorFeatures = function () {
 }
 
 const pointCloudStyle = async function () {
-    console.log('Cesium.Matrix4.IDENTITY', Cesium.Matrix4.IDENTITY)
     // 取消lookAt效果，恢复到默认相机位置
     viewer.scene.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
     let pointCloudTileset;
