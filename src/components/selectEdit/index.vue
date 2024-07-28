@@ -26,9 +26,9 @@ const handleSelect = (handleFunction) => {
     >
         <el-option
             v-for="item in options"
-            :key="item.value"
+            :key="item.label"
             :label="item.label"
-            :value="item.value">
+            :value="item.value">  
         </el-option>
     </el-select>
   </div>
