@@ -34,7 +34,7 @@ const handleSelect = (handleFunction) => {
   </div>
 </template>
 
-<style>
+<style scoped>
   .select {
     z-index: 100;
     position: absolute;
