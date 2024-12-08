@@ -40,7 +40,7 @@ onMounted(async () => {
     viewer.clock.currentTime = start.clone();
     viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP; //Loop at the end
     viewer.clock.multiplier = 1;
-    viewer.clock.shouldAnimate = true;
+    viewer.clock.shouldAnimate = false;
 
     //Set timeline to simulation bounds
     viewer.timeline.zoomTo(start, stop);
@@ -56,19 +56,19 @@ onMounted(async () => {
     position.addSample(start, pos1);
     position.addSample(stop, pos2);
     milkEntity = viewer.entities.add({
-        availability: new Cesium.TimeIntervalCollection([
-            new Cesium.TimeInterval({
-                start: start,
-                stop: stop,
-            }),
-        ]),
-        model: {
-            uri: "CesiumMilkTruck.glb",
-            minimumPixelSize: 64,
-        },
-        viewFrom: new Cesium.Cartesian3(-100.0, 0.0, 100.0),
-        position: position,
-        orientation: new Cesium.VelocityOrientationProperty(position),
+      availability: new Cesium.TimeIntervalCollection([
+          new Cesium.TimeInterval({
+              start: start,
+              stop: stop,
+          }),
+      ]),
+      model: {
+          uri: "CesiumMilkTruck.glb",
+          minimumPixelSize: 64,
+      },
+      viewFrom: new Cesium.Cartesian3(-100.0, 0.0, 100.0),
+      position: position,
+      orientation: new Cesium.VelocityOrientationProperty(position),
     });
     viewer.trackedEntity = milkEntity;
     
@@ -220,7 +220,6 @@ function emitterSelect (emitterValue) {
       );
       break
     case 'Box Emitter':
-      boxEmitter()
       particleSystem.emitter = new Cesium.BoxEmitter(
         new Cesium.Cartesian3(10.0, 10.0, 10.0)
       );
