@@ -13,6 +13,7 @@ const routes = Object.keys(pages).map((path) => {
     component: pages[path], // 动态导入组件
   };
 });
+console.log('routes', routes)
 
 // 创建路由实例
 const router = createRouter({

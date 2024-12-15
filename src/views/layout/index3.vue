@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <!-- 左侧目录 -->
-      <div class="sidebar">
+      <div class="sidebar" >
         <el-menu
           :default-active="activeSection"
           class="el-menu-vertical"
@@ -29,8 +29,8 @@
         </el-menu>
       </div>
   
-      <!-- 右侧内容 -->
-      <div class="content" ref="contentContainer">
+      <!-- 右侧内容-卡片 -->
+      <div class="content" ref="contentContainer" v-if="showCard">
         <div
           v-for="(item, index) in sections"
           :key="item.id"
@@ -38,7 +38,6 @@
           class="content-section"
         >
           <h2>{{ item.title }}</h2>
-          <div style="height: 200px">{{ item.content }}</div>
   
           <div
             v-for="(subItem, subIndex) in item.children"
@@ -46,8 +45,9 @@
             :id="subItem.id"
             class="sub-content-section"
           >
-            <h3>{{ subItem.title }}</h3> {{ subItem.content }}
-            <div class= 'cardBox' style="height: 400px">
+            <h3 class="header">{{ subItem.title }}</h3> 
+            <div class="tip">{{ subItem.tip }} </div>
+            <div class= 'cardBox'>
               <div 
               class = 'card' 
               v-for="(card,cardIndex) in subItem.card"
@@ -63,6 +63,11 @@
           </div>
         </div>
       </div>
+      <!-- 右侧内容-地图--> 
+      <div v-else>
+        <router-view></router-view>
+      </div>
+      
     </div>
   </template>
   
@@ -70,50 +75,16 @@
   import { ref, onMounted, onUnmounted } from 'vue';
   import { ElMenu, ElSubMenu, ElMenuItem } from 'element-plus';
   import { useRouter } from 'vue-router';
+  import sections from '@/assets/contents.json' 
   
   export default {
     components: { ElMenu, ElSubMenu, ElMenuItem },
     setup() {
-      const sections = [
-        {
-          id: 'tutorials',
-          title: '基础',
-          content: 'Build your first CesiumJS app with real-world data',
-          children: [
-            { id: 'subsection1-1', title: '官网教程', content: 'https://www.cesium.com/learn/cesiumjs-learn/', card: [
-              { title: 'Build a flight tracker', url: 'image.png' },
-              { title: 'Build a flight tracker', url: 'image.png' },
-              { title: 'Build a flight tracker', url: 'image.png' },
-              { title: 'Build a flight tracker', url: 'image.png' },
-              { title: 'Build a flight tracker', url: 'image.png' },
-            ]},
-            { id: 'subsection1-2', title: 'Subsection 1.2', content: 'Content for Subsection 1.2' },
-          ],
-        },
-        {
-          id: 'video',
-          title: '空间分析',
-          content: 'Content for Section 2',
-          children: [
-            { id: 'subsection2-1', title: 'Subsection 2.1', content: 'Content for Subsection 2.1' },
-            { id: 'subsection2-2', title: 'Subsection 2.2', content: 'Content for Subsection 2.2' },
-          ],
-        },
-        {
-          id: 'hyper',
-          title: '三维仿真',
-          content: '',
-          children: [
-          { id: 'subsection2-1', title: 'Subsection 2.1', content: 'Content for Subsection 2.1' },
-          { id: 'subsection2-2', title: 'Subsection 2.2', content: 'Content for Subsection 2.2' },
-          ],
-        }
-      ];
-  
       const activeSection = ref('0');
       const activeSubSection = ref(null);
       const contentContainer = ref(null);
       const menuRef = ref()
+      const showCard = ref(true)
       let observers = [];
   
       const scrollToSection = (index) => {
@@ -131,6 +102,7 @@
       };
   
       const handleMenuSelect = (key) => {
+        showCard.value = truse
         if (key.startsWith('sub')) {
           scrollToSubSection(key);
         } else {
@@ -165,7 +137,6 @@
                     entries.forEach((entry) => {
                       if (entry.isIntersecting) {
                         activeSubSection.value = subItem.id;
-                        console.log('menuRef.value', menuRef.value)
                         menuRef.value.open(index)
                         // activeSection.value = item.id
                       }
@@ -191,9 +162,11 @@
 
       const router = useRouter();
       const clickCard = (cardItem) => {
+        console.log('router', router)
         console.log('cardItem', cardItem)
-        // window.open('https://www.cesium.com/learn/cesiumjs-learn/');
-        window.open('https://www.cesium.com/learn/cesiumjs-learn/');
+        showCard.value = false
+        router.push(cardItem.router)
+        window.open(cardItem.router);
       }
   
       return {
@@ -205,7 +178,8 @@
         handleMenuSelect,
         contentContainer,
         menuRef,
-        clickCard 
+        clickCard,
+        showCard
       };
     },
   };
@@ -220,7 +194,9 @@
     height: 100vh;
     overflow: hidden;
   }
-  
+  h2, h3 {
+    text-align: left;
+  }
   .sidebar {
     width: 20%;
     background-color: #f4f4f4;
@@ -270,4 +246,4 @@
     font-weight: bold;
   }
   </style>
-  
+   <!-- object-fit: cover; /* 图片缩放以覆盖区域，避免变形 */ -->
