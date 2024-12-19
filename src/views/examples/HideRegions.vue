@@ -32,10 +32,10 @@ onMounted(async () => {
     // Load a GeoJSON file with positions defining the project footprint
     let footprint;
     try {
-            const resource = await Cesium.IonResource.fromAssetId(2533131);
-            const dataSource = await Cesium.GeoJsonDataSource.load(resource, {
-                clampToGround: true,
-    });
+        const resource = await Cesium.IonResource.fromAssetId(2533131);
+        const dataSource = await Cesium.GeoJsonDataSource.load(resource, {
+            clampToGround: true,
+        });
 
         viewer.dataSources.add(dataSource);
 
@@ -50,12 +50,13 @@ onMounted(async () => {
                 Cesium.Math.toRadians(-18.0),
             600.0
         );
-        viewer.zoomTo(footprint, cameraOffset);          viewer.homeButton.viewModel.command.beforeExecute.addEventListener(
+        viewer.zoomTo(footprint, cameraOffset);          
+        viewer.homeButton.viewModel.command.beforeExecute.addEventListener(
                 (e) => {
                 e.cancel = true;
                 viewer.zoomTo(footprint, cameraOffset);
                 }
-    );
+        );
     } catch (error) {
     console.log(`Error loading geojson. ${error}`);
     }

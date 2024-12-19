@@ -1,6 +1,8 @@
 <script setup>
 import * as Cesium from 'cesium'
 import {ref, reactive, onMounted, watch} from 'vue'
+import CesiumMilkTruckModel from '/CesiumMilkTruck.glb'
+import Smoke from '/smoke.png'
 
 let viewer = null
 let viewModel = reactive({
@@ -16,7 +18,7 @@ let viewModel = reactive({
 });
 let milkEntity = null
 let particleSystem = null
-let curEmitter = ref('')
+let curEmitter = ref('Circle Emitter')
 
 const emitterOption = [
   {value:"Circle Emitter", name: "圆形发射器"},
@@ -26,7 +28,7 @@ const emitterOption = [
 ] 
 
 
-onMounted(async () => {
+onMounted(async() => {
     viewer = new Cesium.Viewer("cesiumContainer");
     const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
     const stop = Cesium.JulianDate.addSeconds(
@@ -40,7 +42,7 @@ onMounted(async () => {
     viewer.clock.currentTime = start.clone();
     viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP; //Loop at the end
     viewer.clock.multiplier = 1;
-    viewer.clock.shouldAnimate = false;
+    viewer.clock.shouldAnimate = true;
 
     //Set timeline to simulation bounds
     viewer.timeline.zoomTo(start, stop);
@@ -63,7 +65,7 @@ onMounted(async () => {
           }),
       ]),
       model: {
-          uri: "CesiumMilkTruck.glb",
+          uri: CesiumMilkTruckModel, // CesiumMilkTruck.glb
           minimumPixelSize: 64,
       },
       viewFrom: new Cesium.Cartesian3(-100.0, 0.0, 100.0),
@@ -74,7 +76,7 @@ onMounted(async () => {
     
     particleSystem = viewer.scene.primitives.add(
       new Cesium.ParticleSystem({
-        image: "smoke.png",
+        image: Smoke, // "smoke.png",
 
         startColor: Cesium.Color.LIGHTSEAGREEN.withAlpha(0.7),
         endColor: Cesium.Color.WHITE.withAlpha(0.0),
@@ -138,8 +140,6 @@ onMounted(async () => {
       }
     });
 })
-
-
 
 const entityPosition = new Cesium.Cartesian3();
 const entityOrientation = new Cesium.Quaternion();
@@ -228,9 +228,6 @@ function emitterSelect (emitterValue) {
       break
   }
 }
-
-
-
 </script>
 
 <template>

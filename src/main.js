@@ -2,18 +2,16 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
-// import router from './router'
-import router from './router/DynamicRoute'
+import router from './router'
+// import router from './router/DynamicRoute'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import './assets/global.css'
 
 import {Ion} from 'cesium';
-import "cesium/Build/Cesium/Widgets/widgets.css";
+// import "cesium/Build/Cesium/Widgets/widgets.css";
 
-Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlZDNiMDU1Yi0zNTM0L' + 
-                          'TQ3ZGEtYTYwNy03NjExYjY5NGVjNTYiLCJpZCI6MTA1NDE2LCJpYXQiOjE2NjEwODc' + 
-                          '2Mzl9.Tb0oUIPl1DsCS6BQDDvhTeImZI8PQDb1g3hX62SopF0';
+Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZTllZmQxNS1mOWY4LTQwZWQtYjBjMC0yNjZkODVjMGI3YmUiLCJpZCI6MTA1NDE2LCJpYXQiOjE3MzQ1OTQ2NzR9.z47KK7AUjSlFHDhnI7QwDdK-nQa61_LOXarD0kecTk4'
 
 const app = createApp(App)
 

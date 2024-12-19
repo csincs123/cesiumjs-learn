@@ -9,17 +9,22 @@
           "title": "1.1 官网教程", 
           "tip": "参考cesium官网关于cesiumjs的教程，https://www.cesium.com/learn/cesiumjs-learn/", 
           "card": [
-            { "title": "Build a flight tracker", "url": "image.png", "router": "/buildflighttracker"},
-            { "title": "Build a flight tracker", "url": "image.png" },
-            { "title": "Build a flight tracker", "url": "image.png" },
-            { "title": "Build a flight tracker", "url": "image.png" },
-            { "title": "Build a flight tracker", "url": "image.png" }
+            { "title": "飞行路线显示", "url": "飞行路线展示.png", "router": "/buildflighttracker"},
+            { "title": "可视化拟建建筑", "url": "可视化拟建建筑.png", "router": "/visualizebuilding"},
+            { "title": "谷歌3dtiles", "url": "谷歌3d tiles.png", "router": "/photorealistic3dtiles"},
+            { "title": "3dTiles样式和筛选", "url": "3dTiles样式和筛选.png", "router": "/stylingfiltering3d"},
+            { "title": "摄像头控制", "url": "摄像头控制.png", "router": "/controlcamera"},
+            { "title": "基础实体", "url": "基础实体.png",  "router": "/creatingentities"},
+            { "title": "剪裁多边型遮盖3Dtiles", "url": "剪裁多边形隐藏3D图块.avif", "router": "/hideregions"}
           ]
         },
         { 
           "id": "subsection1-2", 
           "title": "1.2 图层", 
-          "content": "Content for Subsection 1.2" 
+          "content": "Content for Subsection 1.2",
+          "card": [
+            { "title": "wms", "url": "飞行路线展示.png", "router": "/buildflighttracker"}
+          ] 
         }
       ]
     },

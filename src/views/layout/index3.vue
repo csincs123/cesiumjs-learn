@@ -28,9 +28,8 @@
           </el-sub-menu>
         </el-menu>
       </div>
-  
       <!-- 右侧内容-卡片 -->
-      <div class="content" ref="contentContainer" v-if="showCard">
+      <div class="content" ref="contentContainer">
         <div
           v-for="(item, index) in sections"
           :key="item.id"
@@ -63,18 +62,13 @@
           </div>
         </div>
       </div>
-      <!-- 右侧内容-地图--> 
-      <div v-else>
-        <router-view></router-view>
-      </div>
-      
     </div>
   </template>
   
   <script>
   import { ref, onMounted, onUnmounted } from 'vue';
   import { ElMenu, ElSubMenu, ElMenuItem } from 'element-plus';
-  import { useRouter } from 'vue-router';
+  import { useRouter, useRoute } from 'vue-router';
   import sections from '@/assets/contents.json' 
   
   export default {
@@ -161,12 +155,9 @@
       });
 
       const router = useRouter();
+      const route = useRoute();
       const clickCard = (cardItem) => {
-        console.log('router', router)
-        console.log('cardItem', cardItem)
-        showCard.value = false
-        router.push(cardItem.router)
-        window.open(cardItem.router);
+        window.open(`/card${cardItem.router}`);
       }
   
       return {
@@ -198,14 +189,15 @@
     text-align: left;
   }
   .sidebar {
-    width: 20%;
+    width: 15%;
+    min-width: 150px;
     background-color: #f4f4f4;
     padding-left: 1rem;
     overflow-y: auto;
   }
   
   .content {
-    width: 80%;
+    /* width: 80%; */
     padding: 1rem;
     overflow-y: auto;
   }
@@ -222,7 +214,7 @@
 
   .cardBox {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 自适应列数，每列宽度至少为 200px */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 自适应列数，每列宽 度至少为 200px  minmax(200px, 1fr) */
     gap: 20px; /* 卡片间距 */
   }
   .card {

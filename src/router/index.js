@@ -1,40 +1,36 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+const childRoute = (() => {
+  const pages = import.meta.glob('../views/examples/*.vue');
+  const childRoute = []
+  Object.keys(pages).map((path) => {
+    const name = path.match(/\/examples\/(.*)\.vue$/)[1];
+    childRoute.push({
+      path: `${name.toLowerCase()}`,
+      name,
+      component: pages[path], // 动态导入组件
+    })
+  })
+  return childRoute
+})()
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/VisualizeBuilding',
-      name: 'VisualizeBuilding',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/examples/VisualizeBuilding.vue')
+      path: '/',
+      component: () => import('@/views/layout/index3.vue')
     },
     {
-      path: '/BuildFlightTracker',
-      name: 'BuildFlightTracker',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/examples/BuildFlightTracker.vue')
-    },
-    {
-      path: '/ControlCamera',
-      name: 'ControlCamera',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/examples/ControlCamera.vue')
-    },
-    // src/views/examples/Photorealistic3DTiles.vue
-    {
-      path: '/Photorealistic3DTiles',
-      name: 'Photorealistic3DTiles',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/examples/Photorealistic3DTiles.vue')
+      path: '/card',
+      component: () => import('@/views/layout/index_map.vue'),
+      // children: [
+      //   {
+      //     path: 'BuildFlightTracker',
+      //     component: () => import('@/views/examples/BuildFlightTracker.vue')
+      //   }
+      // ]
+      children: childRoute
     }
   ]
 })
