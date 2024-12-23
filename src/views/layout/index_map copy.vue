@@ -14,7 +14,9 @@ const handleMenuItemClick = (card) => {
     <!-- 左侧目录 -->
     <div class="sidebar" >
       <el-menu
+        :default-active="activeSection"
         class="el-menu-vertical"
+        @select="handleMenuSelect"
         :collapse="isCollapse"
         unique-opened
         ref="menuRef"
@@ -28,12 +30,16 @@ const handleMenuItemClick = (card) => {
             <img :src="item.iconUrl" style="height: 20px; width: 20px">
             <span>{{ item.title }}</span>
           </template>
-          <el-sub-menu
+          <el-menu-item-group
             v-for="(subItem, subIndex) in item.children"
             :key="subItem.id"
             :index="subItem.id"
           >
-            <template #title>{{ subItem.title }}</template>
+          <!-- :class="{ 'is-active': activeSubSection === subItem.id }" -->
+            <template #title>
+              <img :src="subItem.iconUrl" style="height: 20px; width: 20px">
+              {{ subItem.title }}
+            </template>
             <el-menu-item 
               v-for="(card, cardIndex) in subItem.card"
               :key="card.title"
@@ -42,7 +48,7 @@ const handleMenuItemClick = (card) => {
             >
             {{ card.title }}
             </el-menu-item>
-          </el-sub-menu>
+          </el-menu-item-group>
         </el-sub-menu>
       </el-menu>
     </div>
@@ -70,5 +76,4 @@ const handleMenuItemClick = (card) => {
     /* padding: 1rem; */
     overflow-y: auto;
   }
-
 </style>

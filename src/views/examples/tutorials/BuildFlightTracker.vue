@@ -152,9 +152,9 @@ function movementAirplane () {
 <template>
   <div id = "cesiumContainer" class="map"> 
     <div class="buttonDiv" v-if="true">
-      <button @click="addRadarSamples" >添加雷达数据</button>
-      <button @click="movementGreenPoint">绿点移动</button>
-      <button @click="movementAirplane">飞机移动</button>
+      <button @click="addRadarSamples" >step1: 添加雷达数据</button>
+      <button @click="movementGreenPoint">step2: 绿点移动</button>
+      <button @click="movementAirplane">step3: 飞机移动</button>
     </div>
   </div>
 </template>
@@ -182,7 +182,7 @@ function movementAirplane () {
     background-color: #3498db;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding-left: 10px;
     margin: 0 5px;
     cursor: pointer;
     border-radius: 3px;
