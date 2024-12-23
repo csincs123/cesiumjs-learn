@@ -158,8 +158,6 @@
         observers.forEach((observer) => observer.disconnect());
       });
 
-      const router = useRouter();
-      const route = useRoute();
       const clickCard = (cardItem) => {
         window.open(`/card${cardItem.router}`);
       }
@@ -187,7 +185,8 @@
   .container {
     display: flex;
     height: 100vh;
-    overflow: hidden;
+    /* width: 100vw; */
+    /* overflow: hidden; */
   }
   h2, h3 {
     text-align: left;
@@ -207,6 +206,7 @@
   }
   
   .content-section {
+    /* width: 70vw; */
     margin-bottom: 2rem;
   }
   

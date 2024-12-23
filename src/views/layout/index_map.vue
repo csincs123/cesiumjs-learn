@@ -55,7 +55,7 @@ const handleMenuItemClick = (card) => {
       </el-menu>
     </div>
     <!-- 右侧内容-地图 -->
-    <div class="contents">
+    <div class="content">
       <RouterView/>
     </div>
   </div>
@@ -74,7 +74,8 @@ const handleMenuItemClick = (card) => {
   }
 
   .content {
-    padding: 1rem;
+    flex: 1;
+    /* padding: 1rem; */
     overflow-y: auto;
   }
 </style>

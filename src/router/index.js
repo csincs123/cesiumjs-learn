@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const childRoute = (() => {
-  const pages = import.meta.glob('../views/examples/*.vue');
+  const pages = import.meta.glob('../views/examples/*/*.vue');
+  console.log('pages', pages)
   const childRoute = []
   Object.keys(pages).map((path) => {
     const name = path.match(/\/examples\/(.*)\.vue$/)[1];
@@ -11,6 +12,7 @@ const childRoute = (() => {
       component: pages[path], // 动态导入组件
     })
   })
+  console.log('childRoute', childRoute)
   return childRoute
 })()
 
