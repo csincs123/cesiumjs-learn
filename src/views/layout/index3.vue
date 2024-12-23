@@ -15,6 +15,7 @@
           :index="String(index)"
           >
             <template #title>
+              <img :src="item.iconUrl" style="height: 20px; width: 20px">
               <span>{{ item.title }}</span>
             </template>
             <el-menu-item
@@ -23,7 +24,10 @@
               :index="subItem.id"
               :class="{ 'is-active': activeSubSection === subItem.id }"
             >
-              {{ subItem.title }}
+              <template #title>
+                <img :src="subItem.iconUrl" style="height: 20px; width: 20px">
+                {{ subItem.title }}
+               </template>
             </el-menu-item>
           </el-sub-menu>
         </el-menu>
@@ -69,7 +73,7 @@
   import { ref, onMounted, onUnmounted } from 'vue';
   import { ElMenu, ElSubMenu, ElMenuItem } from 'element-plus';
   import { useRouter, useRoute } from 'vue-router';
-  import sections from '@/assets/contents.json' 
+  import sections from '@/assets/contents.json';
   
   export default {
     components: { ElMenu, ElSubMenu, ElMenuItem },
@@ -96,7 +100,7 @@
       };
   
       const handleMenuSelect = (key) => {
-        showCard.value = truse
+        showCard.value = true
         if (key.startsWith('sub')) {
           scrollToSubSection(key);
         } else {
@@ -192,7 +196,7 @@
     width: 15%;
     min-width: 150px;
     background-color: #f4f4f4;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
     overflow-y: auto;
   }
   

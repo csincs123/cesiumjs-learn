@@ -4,17 +4,17 @@ import sections from '@/assets/contents.json'
 
 let isCollapse = ref(true)
 let showCard = ref(false)
+
+const handleMenuItemClick = (card) => {
+  console.log('card', card)
+  window.open(`/card${card.router}`);
+} 
 </script>
 
 <template>
   <div class="container">
     <!-- 左侧目录 -->
     <div class="sidebar" >
-      <el-button @click="isCollapse=!isCollapse">展开\关闭</el-button> 
-    <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-      <el-radio-button :value="false">展开</el-radio-button>
-      <el-radio-button :value="true">关闭</el-radio-button>
-    </el-radio-group> -->
       <el-menu
         :default-active="activeSection"
         class="el-menu-vertical"
@@ -29,52 +29,30 @@ let showCard = ref(false)
         :index="String(index)"
         >
           <template #title>
+            <img :src="item.iconUrl" style="height: 20px; width: 20px">
             <span>{{ item.title }}</span>
           </template>
-          <el-menu-item
+          <el-menu-item-group
             v-for="(subItem, subIndex) in item.children"
             :key="subItem.id"
             :index="subItem.id"
-            :class="{ 'is-active': activeSubSection === subItem.id }"
           >
-            {{ subItem.title }}
-          </el-menu-item>
+          <!-- :class="{ 'is-active': activeSubSection === subItem.id }" -->
+            <template #title>
+              <img :src="subItem.iconUrl" style="height: 20px; width: 20px">
+              {{ subItem.title }}
+            </template>
+            <el-menu-item 
+              v-for="(card, cardIndex) in subItem.card"
+              :key="card.title"
+              :index="card.title"
+              @click="handleMenuItemClick(card)"
+            >
+            {{ card.title }}
+            </el-menu-item>
+          </el-menu-item-group>
         </el-sub-menu>
       </el-menu>
-    </div>
-    <!-- 右侧内容-卡片 -->
-      <div class="content" ref="contentContainer" v-show="showCard">
-        <div
-          v-for="(item, index) in sections"
-          :key="item.id"
-          :id="item.id"
-          class="content-section"
-        >
-          <h2>{{ item.title }}</h2>
-  
-          <div
-            v-for="(subItem, subIndex) in item.children"
-            :key="subItem.id"
-            :id="subItem.id"
-            class="sub-content-section"
-          >
-            <h3 class="header">{{ subItem.title }}</h3> 
-            <div class="tip">{{ subItem.tip }} </div>
-            <div class= 'cardBox'>
-              <div 
-              class = 'card' 
-              v-for="(card,cardIndex) in subItem.card"
-              :key="card"
-              @click="clickCard(card)"
-              >
-                <div class = 'title'>
-                  {{card.title}}
-                </div>
-                <img :src="card.url">
-              </div>
-            </div>
-          </div>
-        </div>
     </div>
     <!-- 右侧内容-地图 -->
     <div class="contents">
@@ -91,7 +69,7 @@ let showCard = ref(false)
   }
   .sidebar {
     background-color: #f4f4f4;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
     overflow-y: auto;
   }
 
