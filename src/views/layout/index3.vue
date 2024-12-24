@@ -15,7 +15,7 @@
           :index="String(index)"
           >
             <template #title>
-              <img :src="item.iconUrl" style="height: 20px; width: 20px">
+              <img :src="item.iconUrl" class="menuIcon">
               <span>{{ item.title }}</span>
             </template>
             <el-menu-item
@@ -25,7 +25,7 @@
               :class="{ 'is-active': activeSubSection === subItem.id }"
             >
               <template #title>
-                <img :src="subItem.iconUrl" style="height: 20px; width: 20px">
+                <img :src="subItem.iconUrl" class="menuIcon" >
                 {{ subItem.title }}
                </template>
             </el-menu-item>
@@ -60,7 +60,7 @@
                 <div class = 'title'>
                   {{card.title}}
                 </div>
-                <img :src="card.url">
+                <img :src="card.url" >
               </div>
             </div>
           </div>
@@ -201,6 +201,7 @@
   
   .content {
     /* width: 80%; */
+    flex: 1;
     padding: 1rem;
     overflow-y: auto;
   }
@@ -218,7 +219,7 @@
 
   .cardBox {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 自适应列数，每列宽 度至少为 200px  minmax(200px, 1fr) */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 350px)); /* 自适应列数，每列宽 度至少为 200px  minmax(200px, 1fr) */
     gap: 20px; /* 卡片间距 */
   }
   .card {
@@ -240,6 +241,11 @@
     font-size: 14px;
     text-align: center;
     font-weight: bold;
+  }
+  .menuIcon{
+    height: 20px;
+    width: 20px;
+    padding-right: 5px
   }
   </style>
    <!-- object-fit: cover; /* 图片缩放以覆盖区域，避免变形 */ -->

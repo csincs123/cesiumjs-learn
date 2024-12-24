@@ -25,7 +25,7 @@ const handleMenuItemClick = (card) => {
         :index="String(index)"
         >
           <template #title>
-            <img :src="item.iconUrl" style="height: 20px; width: 20px">
+            <img :src="item.iconUrl" class="menuIcon">
             <span>{{ item.title }}</span>
           </template>
           <el-sub-menu
@@ -33,13 +33,17 @@ const handleMenuItemClick = (card) => {
             :key="subItem.id"
             :index="subItem.id"
           >
-            <template #title>{{ subItem.title }}</template>
+            <template #title>
+            <img :src="subItem.iconUrl" class="menuIcon">
+            {{ subItem.title }}
+            </template>
             <el-menu-item 
               v-for="(card, cardIndex) in subItem.card"
               :key="card.title"
               :index="card.title"
               @click="handleMenuItemClick(card)"
             >
+            <img :src="card.url" class="menuIcon">
             {{ card.title }}
             </el-menu-item>
           </el-sub-menu>
@@ -69,6 +73,12 @@ const handleMenuItemClick = (card) => {
     flex: 1;
     /* padding: 1rem; */
     overflow-y: auto;
+  }
+
+  .menuIcon{
+    height: 20px;
+    width: 20px;
+    padding-right: 5px
   }
 
 </style>

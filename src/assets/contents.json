@@ -8,7 +8,7 @@
         { 
           "id": "subsection1-1", 
           "title": "1.1 官网教程", 
-          "iconUrl": "/menuIcon/教程.png",
+          "iconUrl": "/menuIcon/官网教程.png",
           "tip": "参考cesium官网关于cesiumjs的教程，https://www.cesium.com/learn/cesiumjs-learn/", 
           "card": [
             { "title": "飞行路线显示", "url": "/cardImg/飞行路线展示.png", "router": "/tutorials/buildflighttracker"},
@@ -26,16 +26,17 @@
           "iconUrl": "/menuIcon/图层.png",
           "content": "Content for Subsection 1.2",
           "card": [
-            { "title": "wms", "url": "wms.png", "router": "/layers/wms"},
-            { "title": "反选遮罩", "url": "飞行路线展示.png", "router": "/layers/wms"}
+            { "title": "wms", "url": "/cardImg/wms.png", "router": "/layers/wms"},
+            { "title": "反选遮罩", "url": "飞行路线展示.png", "router": "/layers/mask"},
+            { "title": "行政区geojson", "url": "/cardImg/行政区geojson.png", "router": "/layers/geojson"}
           ] 
         }
       ]
     },
     {
       "id": "video",
-      "title": "空间分析",
-      "iconUrl": "mti-4G执法.png",
+      "title": "2 空间分析",
+      "iconUrl": "/menuIcon/空间分析.png",
       "content": "Content for Section 2",
       "children": [
         { 
@@ -52,14 +53,17 @@
     },
     {
       "id": "hyper",
-      "title": "三维仿真",
-      "iconUrl": "mti-4G执法.png",
+      "title": "3 三维仿真",
+      "iconUrl": "/menuIcon/三维仿真.png",
       "content": "",
       "children": [
         { 
           "id": "subsection2-1", 
-          "title": "Subsection 2.1", 
-          "content": "Content for Subsection 2.1" 
+          "title": "3.1 三角网", 
+          "content": "Content for Subsection 2.1",
+          "card": [
+            { "title": "三角网", "url": "/cardImg/wms.png", "router": "/triangulation/triangulation"}
+          ]
         },
         { 
           "id": "subsection2-2", 
