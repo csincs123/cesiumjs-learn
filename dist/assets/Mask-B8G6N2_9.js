@@ -1,0 +1,1 @@
+import{_ as s,o as t,a,c as n}from"./index-ZlcCc1lM.js";const c={id:"cesiumContainer",class:"map"},o={__name:"Mask",setup(r){let e=null;return t(async()=>{e=new Cesium.Viewer("cesiumContainer"),e.scene.globe.depthTestAgainstTerrain=!0}),(_,i)=>(a(),n("div",c))}},u=s(o,[["__scopeId","data-v-c199f255"]]);export{u as default};
