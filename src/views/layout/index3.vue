@@ -100,6 +100,7 @@
       };
   
       const handleMenuSelect = (key) => {
+        console.log('key', key)
         showCard.value = true
         if (key.startsWith('sub')) {
           scrollToSubSection(key);
