@@ -6,6 +6,7 @@ import cesium from 'vite-plugin-cesium'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/cesiumjs-learn',
   plugins: [
     vue(), cesium()
   ],
@@ -13,5 +14,6 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  assetsInclude: ["**/*.hbr", "**/*.glb"]
 })

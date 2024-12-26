@@ -1,18 +1,18 @@
-# 项目介绍
+# CesiumJS-Learn
 
-本项目是将CesiumJS官网教程中的html代码转为Vue3。
-特点：
-1 对教程代码需要使用cesium ion的地方进行调整，尽量使用本地文件，减少操作。
+## 项目介绍
 
-2 添加了很多操作方便一遍运行代码一遍分析代码。
+**项目内容**：展示CesiumJS的使用实例，参考[官网sandcastle](https://sandcastle.cesium.com/)，没有实时编码。
+**项目框架**：vite + vue3。
+**项目在线访问**： https://csincs123.github.io/cesiumjs-learn/。
 
-3 搭配掘金博客https://juejin.cn/column/7386969940940980258可以更快了解CesiumJS官网教程。
+搭配[掘金博客](https://juejin.cn/column/7386969940940980258)，博客文章对项目示例有详细描述，搭配食用更好。
 
-页面
+**首页**
 
-![1721060768264](image/README/1721060768264.png)
+![1721060768264](image/README/首页.png)
 
-# 项目启动
+## 项目启动
 
 1 修改Cesium Iontoken
 
@@ -41,13 +41,9 @@ npm run dev
 
 
 
-# 项目使用
+## 项目使用
 
-点击左侧的目录右侧出现相应的主题内容
-
-举例：点击【Build a flight tracker】，右侧出现相关地图和控件
-
-点击【添加雷达数据】显示相关数据
-
-![image-20240716003759502](image-20240716003759502.png)
+首页点击相应卡片，新建页面
+例如：点击【飞行路线显示】，显示飞行路线页面
+![1721060768264](image/README/点击飞行.png)
 
