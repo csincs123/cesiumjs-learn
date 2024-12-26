@@ -29,6 +29,7 @@ onMounted(async () => {
         console.log(`Error loading Photorealistic 3D Tiles tileset.
         ${error}`);
     }
+    viewer.zoomTo(globalTileset)
     // Load a GeoJSON file with positions defining the project footprint
     let footprint;
     try {

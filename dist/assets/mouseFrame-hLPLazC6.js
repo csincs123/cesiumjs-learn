@@ -1,1 +1,0 @@
-import{_ as e,o as s,a,c as o}from"./index-DQb4Bj7z.js";const c={id:"cesiumContainer",class:"map"},t={__name:"mouseFrame",setup(n){return s(async()=>{new Cesium.Viewer("cesiumContainer")}),(r,_)=>(a(),o("div",c))}},i=e(t,[["__scopeId","data-v-cf31f2f9"]]);export{i as default};

@@ -2,7 +2,7 @@
 import * as Cesium from 'cesium'
 import {onMounted, ref} from 'vue'
 import {drawTIN} from './drawTIN.js'
-
+const baseUrl = import.meta.env.BASE_URL
 let viewer = null
 onMounted(async() => {
     viewer = new Cesium.Viewer('cesiumContainer', {
@@ -22,8 +22,8 @@ const drawTri = () => {
     )
     primitives1.value = drawTIN(
       viewer,
-      "/triangle/point_大孤山铁矿_3_+5m.txt", // public/triangle/point_大孤山铁矿_3_+5m.txt
-      "/triangle/index_大孤山铁矿_3_+5m.txt",   // public/triangle/index_大孤山铁矿_3_+5m.txt
+      baseUrl + "/triangle/point_大孤山铁矿_3_+5m.txt", // public/triangle/point_大孤山铁矿_3_+5m.txt
+      baseUrl + "/triangle/index_大孤山铁矿_3_+5m.txt",   // public/triangle/index_大孤山铁矿_3_+5m.txt
       geometryColor
     )
 } 

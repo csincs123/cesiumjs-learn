@@ -11,11 +11,8 @@ const childRoute = (() => {
       component: pages[path], // 动态导入组件
     })
   })
-  console.log('childRoute', childRoute)
   return childRoute
 })()
-
-console.log('import.meta.env.BASE_URL', import.meta.env.BASE_URL)
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL), // import.meta.env.BASE_URL

@@ -6,7 +6,7 @@ let viewer = null
 onMounted(async() => {
     viewer = new Cesium.Viewer('cesiumContainer')
     viewer.scene.globe.depthTestAgainstTerrain = true
-    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/湖南省_省.geojson', {
+    viewer.dataSources.add(Cesium.GeoJsonDataSource.load(import.meta.env.BASE_URL + '/湖南省_省.geojson', {
         // stroke: Cesium.Color.HOTPINK,
         // fill: Cesium.Color.PINK,
         // strokeWidth: 3,
