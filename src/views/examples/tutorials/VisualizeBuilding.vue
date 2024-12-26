@@ -31,7 +31,7 @@ async function addBuildingGeoJSON() {
   // Load the GeoJSON file from Cesium ion.
   // const geoJSONURL = await Cesium.IonResource.fromAssetId(your_asset_id);
   // Create the geometry from the GeoJSON, and clamp it to the ground.
-  const new_building_denver = '/new_building_denver.json';
+  const new_building_denver = import.meta.env.BASE_URL + '/new_building_denver.json';
   buildingGeoJSON = await Cesium.GeoJsonDataSource.load(new_building_denver, { clampToGround: true });
   // Add it to the scene.
   const dataSource = await viewer.dataSources.add(buildingGeoJSON);
@@ -77,7 +77,7 @@ async function showNewBuilding () {
 
   // STEP 6 CODE
   // Add the 3D Tileset you created from your Cesium ion account.
-  const newBuildingTilesetUrl = '/PSFS.glb'
+  const newBuildingTilesetUrl = import.meta.env.BASE_URL + '/PSFS.glb'
 
   // Position a model with modelMatrix and display it with a minimum size of 128 pixels
   const position = Cesium.Cartesian3.fromDegrees(

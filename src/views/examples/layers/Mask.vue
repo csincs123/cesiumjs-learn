@@ -9,7 +9,7 @@ onMounted(async () => {
     viewer.scene.globe.depthTestAgainstTerrain = true
     // const response  = await fetch('/湖南省_省.geojson')
     // const hunanJSON = await response.json()
-    // maskPolygon()
+    maskPolygon()
     // let array = Cesium.Cartesian3.fromDegreesArray([1, -89, 1, 89, 180, 89, 180, -89])
     // console.log('array', array)
 
@@ -21,7 +21,7 @@ const maskPolygon = () => {
         id: 1,
         polygon: {
             hierarchy: {
-                positions: Cesium.Cartesian3.fromDegreesArray([1, -89, 1, 89, 180, 89, 180, -89]), // [100, 0, 100, 89, 150, 89, 150, 0]
+                positions: Cesium.Cartesian3.fromDegreesArray([1, 0, 1, 89, 180, 89, 180, 0]), // [100, 0, 100, 89, 150, 89, 150, 0]
                 holes:[{
                     positions: Cesium.Cartesian3.fromDegreesArray([110, 30, 110, 50, 130, 50, 130, 30]),
                     holes:[{

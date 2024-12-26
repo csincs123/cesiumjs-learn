@@ -202,7 +202,9 @@ function heightExtrusions () {
   wyoming.polygon.extrudedHeight = 250000;
 }
 function height () {
-  wyoming.polygon.height = 250000;
+  if (wyoming) {
+    wyoming.polygon.height = 250000;
+  }
 }
 function polylinesGlow () {
   polyline.material = new Cesium.PolylineGlowMaterialProperty({

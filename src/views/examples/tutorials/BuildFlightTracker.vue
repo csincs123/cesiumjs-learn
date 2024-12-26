@@ -1,4 +1,3 @@
-
 <script setup>
 import * as Cesium from 'cesium';
 import { onMounted } from "vue";
@@ -44,7 +43,7 @@ async function addRadarSamples () {
     radarDataSource.show = !radarDataSource.show  
     return 
   }
-  flightData = await fetchLocalJson('/flight.json')
+  flightData = await fetchLocalJson(import.meta.env.BASE_URL + '/flight.json')
 
   radarDataSource = new Cesium.CustomDataSource('myData');
   // radarCollection = new Cesium.EntityCollection()
@@ -65,7 +64,7 @@ async function addRadarSamples () {
 
 async function movementOvertime (type) {
   if (!flightData) {
-    flightData = await fetchLocalJson('/flight.json')
+    flightData = await fetchLocalJson(import.meta.env.BASE_URL + '/flight.json')
   }
   /* Initialize the viewer clock:
     Assume the radar samples are 30 seconds apart, and calculate the entire flight duration based on that assumption.
@@ -124,7 +123,7 @@ async function movementOvertime (type) {
 // STEP 6 CODE (airplane entity)
 function loadAirModel() {
   // Load the glTF model from Cesium ion.
-  const airplaneModelUrl = '/Cesium_Air.glb'
+  const airplaneModelUrl = import.meta.env.BASE_URL + '/Cesium_Air.glb'
   return  {
     availability: new Cesium.TimeIntervalCollection([ new Cesium.TimeInterval({ start: start, stop: stop }) ]),
     position: positionProperty,

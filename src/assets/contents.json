@@ -17,7 +17,8 @@
             { "title": "3dTiles样式和筛选", "url": "/cardImg/3dTiles样式和筛选.png", "router": "/tutorials/stylingfiltering3d"},
             { "title": "摄像头控制", "url": "/cardImg/摄像头控制.png", "router": "/tutorials/controlcamera"},
             { "title": "基础实体", "url": "/cardImg/基础实体.png",  "router": "/tutorials/creatingentities"},
-            { "title": "剪裁多边型遮盖3Dtiles", "url": "/cardImg/剪裁多边形隐藏3D图块.avif", "router": "/tutorials/hideregions"}
+            { "title": "剪裁多边型遮盖3Dtiles", "url": "/cardImg/剪裁多边形隐藏3D图块.avif", "router": "/tutorials/hideregions"},
+            { "title": "粒子系统", "url": "/cardImg/粒子系统.png", "router": "/tutorials/particlesystem"}
           ]
         },
         { 
@@ -27,7 +28,7 @@
           "content": "Content for base 1.2",
           "card": [
             { "title": "wms", "url": "/cardImg/wms.png", "router": "/layers/wms"},
-            { "title": "反选遮罩", "url": "飞行路线展示.png", "router": "/layers/mask"},
+            { "title": "反选遮罩", "url": "/cardImg/反选遮罩.png", "router": "/layers/mask"},
             { "title": "行政区geojson", "url": "/cardImg/行政区geojson.png", "router": "/layers/geojson"}
           ] 
         },

@@ -1,10 +1,20 @@
 <script setup>
-import Layout from '@/views/layout/index3.vue'
+import {reactive} from 'vue'
+import Layout from '@/views/layout/index.vue'
+const font = reactive({
+  color: 'rgba(255, 0, 0, .35)',
+})
+
 </script>
 
 <template>
   <!-- <Layout/> -->
-  <RouterView/>
+  <!-- 水印 -->
+  <el-watermark :font="font" :content="['csincs123', '(wx: CS17707409520)']">
+      <!-- <div style="height: 500px" /> -->
+      <RouterView/>
+  </el-watermark>
+  
 </template>
 
 <style scoped>

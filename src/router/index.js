@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 
 const childRoute = (() => {
   const pages = import.meta.glob('../views/examples/*/*.vue');
@@ -11,15 +11,19 @@ const childRoute = (() => {
       component: pages[path], // 动态导入组件
     })
   })
+  console.log('childRoute', childRoute)
   return childRoute
 })()
 
+console.log('import.meta.env.BASE_URL', import.meta.env.BASE_URL)
+
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL), // import.meta.env.BASE_URL
+  // history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      component: () => import('@/views/layout/index3.vue')
+      component: () => import('@/views/layout/index.vue')
     },
     {
       path: '/card',

@@ -1,7 +1,7 @@
 <script setup>
 import {ref} from 'vue'
 import sections from '@/assets/contents.json'
-
+const baseUrl = import.meta.env.BASE_URL
 let isCollapse = ref(true)
 
 const handleMenuItemClick = (card) => {
@@ -25,7 +25,7 @@ const handleMenuItemClick = (card) => {
         :index="String(index)"
         >
           <template #title>
-            <img :src="item.iconUrl" class="menuIcon">
+            <img :src="`${baseUrl}${item.iconUrl}`" class="menuIcon">
             <span>{{ item.title }}</span>
           </template>
           <el-sub-menu
@@ -34,7 +34,7 @@ const handleMenuItemClick = (card) => {
             :index="subItem.id"
           >
             <template #title>
-            <img :src="subItem.iconUrl" class="menuIcon">
+            <img :src="`${baseUrl}${subItem.iconUrl}`" class="menuIcon">
             {{ subItem.title }}
             </template>
             <el-menu-item 
@@ -43,7 +43,7 @@ const handleMenuItemClick = (card) => {
               :index="card.title"
               @click="handleMenuItemClick(card)"
             >
-            <img :src="card.url" class="menuIcon">
+            <img :src="`${baseUrl}${card.url}`" class="menuIcon">
             {{ card.title }}
             </el-menu-item>
           </el-sub-menu>
