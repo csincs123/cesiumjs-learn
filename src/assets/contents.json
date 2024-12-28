@@ -17,7 +17,7 @@
             { "title": "3dTiles样式和筛选", "url": "/cardImg/3dTiles样式和筛选.png", "router": "/tutorials/stylingfiltering3d"},
             { "title": "摄像头控制", "url": "/cardImg/摄像头控制.png", "router": "/tutorials/controlcamera"},
             { "title": "基础实体", "url": "/cardImg/基础实体.png",  "router": "/tutorials/creatingentities"},
-            { "title": "剪裁多边型遮盖3Dtiles", "url": "/cardImg/剪裁多边形隐藏3D图块.avif", "router": "/tutorials/hideregions"},
+            { "title": "剪裁多边型遮盖3Dtiles", "url": "/cardImg/剪裁多边形隐藏3D图块.avif", "router": "/tutorials/aeccliping"},
             { "title": "粒子系统", "url": "/cardImg/粒子系统.png", "router": "/tutorials/particlesystem"}
           ]
         },
@@ -37,7 +37,7 @@
           "title": "1.3 交互",
           "iconUrl": "/menuIcon/交互.png",
           "card": [
-            {"title": "显示鼠标位置", "url": "/cardImg/飞行路线展示.png", "router": "/interactive/mouseposition"},
+            {"title": "显示鼠标位置", "url": "/cardImg/显示鼠标位置.png", "router": "/interactive/mouseposition"},
             {"title": "鼠标框选", "url": "/cardImg/飞行路线展示.png", "router": "/interactive/mouseframe"}
           ]
         }

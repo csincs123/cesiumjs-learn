@@ -64,6 +64,18 @@ const mouseClick = () => {
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
 }
 
+// const mouseClick = () => {
+//   new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas).setInputAction((movement) => {
+//    let pickPosition = viewer.scene.pickPosition(movement.position)
+//    let modelCartographic = Cesium.Cartographic.fromCartesian(pickPosition)
+//    let lng = Cesium.Math.toDegrees(modelCartographic.longitude).toFixed(6)
+//    let lat = Cesium.Math.toDegrees(modelCartographic.latitude).toFixed(6)
+//    console.log(`lng:${lng}, lat:${lat}`)
+//   },Cesium.ScreenSpaceEventType.LEFT_CLICK)
+// }
+
+// mouseClick()
+
 const round = (number) => {
     return number.toFixed(2)
 }
