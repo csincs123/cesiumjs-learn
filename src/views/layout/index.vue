@@ -60,7 +60,7 @@
                 <div class = 'title'>
                   {{card.title}}
                 </div>
-                <img :src="`${baseUrl}${card.url}`" >
+                <img :src="`${baseUrl}${card.url}`" loading="lazy" >
                 <!-- ${import.meta.env.BASE_URL} -->
                 <!-- <img :src="card.url" > -->
               </div>

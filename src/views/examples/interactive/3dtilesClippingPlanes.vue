@@ -105,14 +105,14 @@ const loadTileset = async (resource, modelMatrix) => {
         viewer.scene.primitives.add(tileset)
         tileset.debugBoundingVolume = viewModel.debugBoundingVolumesEnabled
         const boundingSphere = tileset.boundingShpere
-        const radius = boundingShpere.radius
+        const radius = boundingSphere.radius
         viewer.zoomTo(tileset, new Cesium.HeadingPitchRanges(0.5, -0.2, radius* 4.0))
 
         if(!Cesium.Matrix4.equals(tileset.root.transform, Cesium.Matrix4.IDENTITY)) {
             const transformCenter = Cesium.Matrix4.getTranslation(tileset.root.transform, new Cesium.Cartesian3())
-            const transfomCartographic = Cesium.Cartographic.fromCartesian(transformCenter)
+            const transformCartographic = Cesium.Cartographic.fromCartesian(transformCenter)
             const boundingShpereCartographic = Cesium.Cartographic.fromCartesian(tileset.boundingShpere.center)
-            const height = boundingShpereCartographic.height - transfromCartographic.height
+            const height = boundingShpereCartographic.height - transformCartographic.height
             clippingPlanes.modelMatrix = Cesium.Matrix4.fromTranslation(new Cesium.Cartesian3(0.0, 0.0, height))
         }
 
@@ -135,6 +135,56 @@ const loadTileset = async (resource, modelMatrix) => {
         console.log(`Error loading tileset: ${error}`)
     }
 }
+
+const loadModel = async (url) => {
+    clippingPlanes = new Cesium.ClippingPlaneCollection({
+        planes: [
+            new Cesium.ClippingPlane(new Cesium.Cartesian3(0.0, 0.0, -1.0), 0.0)
+        ],
+        edgeWidth: viewModel.edgeStylingEnabled? 1.0: 0.0
+    })
+    const position = Cesium.Cartesian3.fromDegrees(-123.0744619, 44.0503706, 300.0)
+    const heading = Cesium.Math.toRadians(135.0)
+    const pitch = 0.0
+    const roll = 0.0
+    const hpr = new Cesium.headingPitchRoll(heading, pitch, roll)
+    const orientation = Cesium.Transforms.headingPitchRollQuaternion(position, hpr)
+    const entity = viewer.entities.add({
+        name: url,
+        position: position,
+        orientation: orientation,
+        model: {
+            uri: url,
+            scale: 8,
+            minimumPixelSize: 100.0,
+            clippingPlanes: clippingPlanes
+        }
+    })
+
+    viewer.trackedEntity = entity;
+
+    for (let i = 0; i < clippingPlanes.length; ++i) {
+        const plane = clippingPlanes.get(i)
+        const planeEntity = viewer.entities.add({
+            position: position,
+            plane: {
+                dimensions: new Cesium.Cartesian2(300.0, 300.0),
+                material: Cesium.Color.WHITE.withAlpha(0.1),
+                plane: new Cesium.CallbackProperty(
+                    createPlaneUpdateFunction(plane),
+                    false
+                ),
+                outline: true,
+                outlineColor: Cesium.Color.WHITE
+            }
+        })
+
+        planeEntities.push(planeEntity)
+    }
+}
+
+const instanceUrl = ""
+const modelUrl = ""
 
 </script>
 
