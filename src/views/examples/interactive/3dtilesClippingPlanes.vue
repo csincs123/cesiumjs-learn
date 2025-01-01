@@ -1,8 +1,10 @@
 <script setup>
 import * as Cesium from 'cesium'
-import {onMounted, ref} from 'vue'
+import {onMounted, ref, watch} from 'vue'
 
 const selectValue = ref('')
+const showBoundingVolumes = ref(false)
+const enableEdgeStyleing = ref(false)
 const selectOptions = [
     {
         value: 'instance',
@@ -32,6 +34,7 @@ let targetY = 0.0;
 let planeEntities = [];
 let selectedPlane;
 let clippingPlanes;
+let tileset = null;
 
 onMounted(async() => {
     viewer = new Cesium.Viewer('cesiumContainer')
@@ -55,7 +58,7 @@ onMounted(async() => {
     }, Cesium.ScreenSpaceEventType.LEFT_DOWN)
 
     const upHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
-    upHandler.setInputAction(function (movement) {
+    upHandler.setInputAction(function () {
         if (Cesium.defined(selectedPlane)) {
             selectedPlane.material = Cesium.Color.WHITE.withAlpha(0.1)
             selectedPlane.outlineColor = Cesium.Color.WHILE
@@ -74,6 +77,18 @@ onMounted(async() => {
     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE)
 })
 
+watch(showBoundingVolumes, (newValue) => {
+    if (Cesium.defined(tileset)) {
+        tileset.debugShowBoundingVolume = newValue;
+    }
+})
+
+watch(enableEdgeStyleing, (newValue) => {
+    if (Cesium.defined(clippingPlanes)) {
+        const edgeWidth = newValue ? 1.0 : 0.0;
+        clippingPlanes.edgeWidth = edgeWidth;
+    }
+})
 const createPlaneUpdateFunction = (plane) => {
     return function () {
         // console.log('targetY', targetY)
@@ -81,7 +96,6 @@ const createPlaneUpdateFunction = (plane) => {
         return plane
     }
 }
-
 
 const clipObjects = ["instance", "model", "bim", "pointCloud"];
 const viewModel = {
@@ -91,7 +105,6 @@ const viewModel = {
     currentExampleType: clipObjects[0],
 };
 
-let tileset = null
 const loadTileset = async (resource, modelMatrix) => {
     const currentExampleType = viewModel.currentExampleType
 
@@ -211,7 +224,6 @@ const reset = () => {
     tileset = undefined;
 }
 
-
 const selectChange = (value) => {
     reset()
     viewModel.currentExampleType = value
@@ -238,7 +250,6 @@ const selectChange = (value) => {
             break
     }
 }
-
 </script>
 
 <template>
@@ -252,8 +263,8 @@ const selectChange = (value) => {
                 :value="item.value"
             />
         </el-select>
-        <el-checkbox label="显示边界体积"></el-checkbox>
-        <el-checkbox label="启用边缘样式"></el-checkbox>
+        <el-checkbox label="显示边界体积" v-model = "showBoundingVolumes" ></el-checkbox>
+        <el-checkbox label="启用边缘样式" v-model = "enableEdgeStyleing"></el-checkbox>
     </div>
 </div>
 </template>
