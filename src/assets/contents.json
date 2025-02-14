@@ -39,7 +39,7 @@
           "card": [
             {"title": "显示鼠标位置", "url": "/cardImg/显示鼠标位置.png", "router": "/interactive/mouseposition"},
             {"title": "鼠标框选", "url": "/cardImg/飞行路线展示.png", "router": "/interactive/mouseframe"},
-            {"title": "裁切平面", "url": "/cardImg/飞行路线展示.png", "router": "/interactive/3dtilesclippingplanes"}
+            {"title": "裁切平面", "url": "/cardImg/裁切平面.png", "router": "/interactive/3dtilesclippingplanes"}
           ]
         }
       ]

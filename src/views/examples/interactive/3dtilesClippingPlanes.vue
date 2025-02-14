@@ -61,17 +61,16 @@ onMounted(async() => {
     upHandler.setInputAction(function () {
         if (Cesium.defined(selectedPlane)) {
             selectedPlane.material = Cesium.Color.WHITE.withAlpha(0.1)
-            selectedPlane.outlineColor = Cesium.Color.WHILE
+            selectedPlane.outlineColor = Cesium.Color.WHITE
             selectedPlane = undefined
         }
-
         scene.screenSpaceCameraController.enableInputs = true
     }, Cesium.ScreenSpaceEventType.LEFT_UP)
 
     const moveHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
     moveHandler.setInputAction(function (movement) {
         if (Cesium.defined(selectedPlane)) {
-            const deltaY = movement.startPosition.y - movement.endPosition.y
+            const deltaY = 0.5 * (movement.startPosition.y - movement.endPosition.y)
             targetY += deltaY
         }
     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE)
@@ -89,9 +88,9 @@ watch(enableEdgeStyleing, (newValue) => {
         clippingPlanes.edgeWidth = edgeWidth;
     }
 })
+
 const createPlaneUpdateFunction = (plane) => {
     return function () {
-        // console.log('targetY', targetY)
         plane.distance = targetY
         return plane
     }
@@ -111,6 +110,8 @@ const loadTileset = async (resource, modelMatrix) => {
     clippingPlanes = new Cesium.ClippingPlaneCollection({
         planes: [
             new Cesium.ClippingPlane(new Cesium.Cartesian3(0.0, 0.0, -1.0), 0.0)
+            // new Cesium.ClippingPlane(new Cesium.Cartesian3(1.0, 0.0, 0.0), 0.0),
+            // new Cesium.ClippingPlane(new Cesium.Cartesian3(0.0, 1.0, 0.0), 0.0)
         ],
         edgeWidth: viewModel.edgeStylingEnabled ? 1.0 : 0.0
     })
@@ -149,6 +150,7 @@ const loadTileset = async (resource, modelMatrix) => {
                 position: boundingSphere.center,
                 plane: {
                     dimensions: new Cesium.Cartesian2(radius * 2.5, radius * 2.5),
+                    // dimensions: new Cesium.Cartesian2(radius, radius),
                     material: Cesium.Color.WHITE.withAlpha(0.1),
                     plane: new Cesium.CallbackProperty(
                         createPlaneUpdateFunction(plane), 
@@ -195,6 +197,7 @@ const loadModel = async (url) => {
 
     for (let i = 0; i < clippingPlanes.length; ++i) {
         const plane = clippingPlanes.get(i)
+        console.log('plane1', plane)
         const planeEntity = viewer.entities.add({
             position: position,
             plane: {
