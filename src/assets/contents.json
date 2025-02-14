@@ -39,7 +39,7 @@
           "card": [
             {"title": "显示鼠标位置", "url": "/cardImg/显示鼠标位置.png", "router": "/interactive/mouseposition"},
             {"title": "鼠标框选", "url": "/cardImg/飞行路线展示.png", "router": "/interactive/mouseframe"},
-            {"title": "裁切平面", "url": "/cardImg/裁切平面.png", "router": "/interactive/3dtilesclippingplanes"}
+            {"title": "3D Tiles裁切平面", "url": "/cardImg/飞行路线展示.png", "router": "/interactive/3dtilesClippingPlanes"}
           ]
         }
       ]
@@ -57,6 +57,23 @@
           "iconUrl": "/menuIcon/三角网.png",
           "card": [
             { "title": "三角网", "url": "/cardImg/三角网.png", "router": "/triangulation/triangulation"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "napPhotogrammetry",
+      "title": "3 贴近摄影测量",
+      "iconUrl": "/menuIcon/三维仿真.png",
+      "content": "",
+      "children": [
+        { 
+          "id": "sub_simulation_triangulation", 
+          "title": "3.1 加载模型", 
+          "content": "Content for base 2.1",
+          "iconUrl": "/menuIcon/三角网.png",
+          "card": [
+            { "title": "点云", "url": "/cardImg/三角网.png", "router": "/photogrammetry/loadPointCloud"}
           ]
         }
       ]
