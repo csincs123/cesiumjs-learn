@@ -60,5 +60,22 @@
           ]
         }
       ]
+    },
+    {
+      "id": "napPhotogrammetry",
+      "title": "3 贴近摄影测量",
+      "iconUrl": "/menuIcon/三维仿真.png",
+      "content": "",
+      "children": [
+        { 
+          "id": "sub_simulation_triangulation", 
+          "title": "3.1 加载模型", 
+          "content": "Content for base 2.1",
+          "iconUrl": "/menuIcon/三角网.png",
+          "card": [
+            { "title": "点云", "url": "/cardImg/三角网.png", "router": "/photogrammetry/loadPointCloud"}
+          ]
+        }
+      ]
     }
 ]
