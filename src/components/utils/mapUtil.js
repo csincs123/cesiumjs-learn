@@ -43,7 +43,7 @@ export async function add3dTiles (viewer, tileUrl, adjustHeight, isSetView) {
   }
 }
 
-export function addChineseImageAnnotation () {
+export function addChineseImageAnnotation (viewer) {
   var TDT_KEY = '0ba0c3d3c24144281b1886d94e45dad0'
   var TDT_CIA_W = 'http://{s}.tianditu.gov.cn/cia_w/wmts?service=wmts&request=GetTile&version=1.0.0' +
     '&LAYER=cia&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}' +
@@ -58,10 +58,10 @@ export function addChineseImageAnnotation () {
     minimumLevel: 0,
     maximumLevel: 18
   })
-  window.viewer.imageryLayers.addImageryProvider(cia)
+  viewer.imageryLayers.addImageryProvider(cia)
 }
 
-export function addTiandituImage () {
+export function addTiandituImage (viewer) {
   var TDT_KEY = '1fce32479ffd3e8c69f9eb81e44183b4'
   var TDT_CIA_W = 'https://{s}.tianditu.gov.cn/img_w/wmts?service=wmts&request=GetTile&version=1.0.0' +
     '&layer=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}' +
@@ -76,7 +76,7 @@ export function addTiandituImage () {
     minimumLevel: 0,
     maximumLevel: 18
   })
-  window.viewer.imageryLayers.addImageryProvider(cia)
+  viewer.imageryLayers.addImageryProvider(cia)
 }
 
 export function setInitCamera () {
