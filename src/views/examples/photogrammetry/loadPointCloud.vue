@@ -19,11 +19,17 @@ onMounted(async() => {
     addTiandituImage(viewer)
     addChineseImageAnnotation(viewer)
     addHandler()
+    
 })
 
 const load3dtile = async () => {
     const tileUrl = '/cesiumjs-learn/Scene/Production_1.json'
-    add3dTiles(viewer, tileUrl, 40, true)
+    add3dTiles(viewer, tileUrl, 40, true).then(tileset => {
+        // getFacadeData(tileset)
+        calculateScreenSpaceError(viewer, tileset)
+    })
+    
+    
 }
 
 const editor = () => {
@@ -90,6 +96,34 @@ const addHandler = () => {
             }
         }
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
+}
+
+const getFacadeData = (tileset) => {
+    debugger
+    tileset.root.traverse(function (tile) {
+        if (tile.content && tile.content.featuresLength > 0) {
+
+        } 
+    })
+}
+
+function calculateScreenSpaceError(viewer, tile) {
+  const scene = viewer.scene;
+  const camera = scene.camera;
+
+  // 获取视口高度
+  const viewportHeight = scene.canvas.clientHeight;
+
+  // 获取相机的垂直视场角（fovy）
+  const fovy = camera.frustum.fovy;
+
+  // 获取相机到Tile的距离
+  const distanceToCamera = Cesium.Cartesian3.distance(camera.position, tile.boundingSphere.center);
+  debugger
+  // 计算屏幕误差
+  const screenSpaceError = (tile.geometricError * viewportHeight) / (distanceToCamera * 2 * Math.tan(fovy / 2));
+  console.log('screenSpaceError', screenSpaceError)
+  return screenSpaceError;
 }
 
 </script>

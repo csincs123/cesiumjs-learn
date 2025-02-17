@@ -41,6 +41,8 @@ export async function add3dTiles (viewer, tileUrl, adjustHeight, isSetView) {
     const boundingSphere = tileset.boundingSphere;
     viewer.camera.viewBoundingSphere(boundingSphere, new Cesium.HeadingPitchRange(0, -0.5, 0));
   }
+
+  return tileset
 }
 
 export function addChineseImageAnnotation (viewer) {
