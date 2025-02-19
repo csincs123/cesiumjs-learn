@@ -5,7 +5,7 @@ const baseUrl = import.meta.env.BASE_URL
 let isCollapse = ref(true)
 
 const handleMenuItemClick = (card) => {
-  window.open(`/card${card.router}`);
+  window.open(`${baseUrl}#/card${card.router}`);
 } 
 </script>
 

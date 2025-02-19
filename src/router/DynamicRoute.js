@@ -14,6 +14,7 @@ const routes = Object.keys(pages).map((path) => {
   };
 });
 
+
 // 创建路由实例
 const router = createRouter({
   history: createWebHistory(),
